@@ -1,4 +1,3 @@
-```python
 import json
 import re
 from datetime import datetime
@@ -82,4 +81,3 @@ class QualityPlanGenerator:
             'date': datetime.now().strftime("%d/%m/%Y")
         }
         return data
-```
