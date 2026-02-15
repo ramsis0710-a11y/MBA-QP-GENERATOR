@@ -1,4 +1,3 @@
-```python
 from reportlab.lib import colors
 from reportlab.lib.pagesizes import A4
 from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Spacer
@@ -31,47 +30,88 @@ def generate_qp_pdf(operations, of_data, qcp_ref, material, output_dir="output")
         [f"In Brief Job : {of_data['product']}", "", "", ""],
     ]
     tbl = Table(header_data, colWidths=[2.2*inch, 2.2*inch, 1.3*inch, 1.3*inch])
-    tbl.setStyle(TableStyle([('SPAN', (0,0), (-1,0)), ('SPAN', (0,1), (-1,1)), ('SPAN', (0,2), (-1,2)),
+    tbl.setStyle(TableStyle([
+        ('SPAN', (0,0), (-1,0)), ('SPAN', (0,1), (-1,1)), ('SPAN', (0,2), (-1,2)),
         ('SPAN', (0,3), (-1,3)), ('SPAN', (0,4), (-1,4)), ('SPAN', (0,5), (-1,5)),
-        ('FONTNAME', (0,0), (-1,-1), 'Helvetica-Bold'), ('FONTSIZE', (0,0), (-1,0), 16),
-        ('ALIGN', (0,0), (-1,-1), 'CENTER'), ('GRID', (0,7), (-1,-1), 0.5, colors.black)]))
+        ('FONTNAME', (0,0), (-1,-1), 'Helvetica-Bold'),
+        ('FONTSIZE', (0,0), (-1,0), 16),
+        ('ALIGN', (0,0), (-1,-1), 'CENTER'),
+        ('GRID', (0,7), (-1,-1), 0.5, colors.black)
+    ]))
     elements.append(tbl)
     elements.append(Spacer(1, 0.1*inch))
 
     # Title
-    title = Table([["OPERATIONS DE FABRICATION ET DE CONTROLE", "", "", "", "", "", "", ""]], colWidths=[0.5*inch,1.5*inch,0.4*inch,0.4*inch,1.2*inch,1.4*inch,0.8*inch,0.8*inch])
-    title.setStyle(TableStyle([('SPAN', (0,0), (-1,0)), ('BACKGROUND', (0,0), (-1,0), colors.grey), ('TEXTCOLOR', (0,0), (-1,0), colors.whitesmoke)]))
+    title = Table([["OPERATIONS DE FABRICATION ET DE CONTROLE", "", "", "", "", "", "", ""]],
+                  colWidths=[0.5*inch, 1.5*inch, 0.4*inch, 0.4*inch, 1.2*inch, 1.4*inch, 0.8*inch, 0.8*inch])
+    title.setStyle(TableStyle([
+        ('SPAN', (0,0), (-1,0)),
+        ('BACKGROUND', (0,0), (-1,0), colors.grey),
+        ('TEXTCOLOR', (0,0), (-1,0), colors.whitesmoke)
+    ]))
     elements.append(title)
 
     # Headers
-    headers = [["", "Manufacture and Cheking Operations", "Interne", "Tierce Parties", "Documents Applicable", "Critère d'acceptance", "Emargement", "Records", "Commentaire"],
-               ["", "", "In-House", "Third Party", "Applicable Specification", "Acceptance criteria", "Signature", "", ""]]
-    htable = Table(headers, colWidths=[0.5*inch,1.5*inch,0.4*inch,0.4*inch,1.2*inch,1.4*inch,0.8*inch,0.8*inch])
-    htable.setStyle(TableStyle([('FONTNAME', (0,0), (-1,-1), 'Helvetica-Bold'), ('FONTSIZE', (0,0), (-1,-1), 8),
-        ('ALIGN', (0,0), (-1,-1), 'CENTER'), ('GRID', (0,0), (-1,-1), 0.5, colors.black),
-        ('SPAN', (0,0), (0,1)), ('SPAN', (1,0), (1,1)), ('SPAN', (2,0), (2,1)), ('SPAN', (3,0), (3,1)),
-        ('SPAN', (4,0), (4,1)), ('SPAN', (5,0), (5,1)), ('SPAN', (6,0), (6,1)), ('SPAN', (7,0), (7,1)), ('SPAN', (8,0), (8,1))]))
+    headers = [
+        ["", "Manufacture and Cheking Operations", "Interne", "Tierce Parties", "Documents Applicable", "Critère d'acceptance", "Emargement", "Records", "Commentaire"],
+        ["", "", "In-House", "Third Party", "Applicable Specification", "Acceptance criteria", "Signature", "", ""]
+    ]
+    htable = Table(headers, colWidths=[0.5*inch, 1.5*inch, 0.4*inch, 0.4*inch, 1.2*inch, 1.4*inch, 0.8*inch, 0.8*inch])
+    htable.setStyle(TableStyle([
+        ('FONTNAME', (0,0), (-1,-1), 'Helvetica-Bold'),
+        ('FONTSIZE', (0,0), (-1,-1), 8),
+        ('ALIGN', (0,0), (-1,-1), 'CENTER'),
+        ('GRID', (0,0), (-1,-1), 0.5, colors.black),
+        ('SPAN', (0,0), (0,1)),
+        ('SPAN', (1,0), (1,1)),
+        ('SPAN', (2,0), (2,1)),
+        ('SPAN', (3,0), (3,1)),
+        ('SPAN', (4,0), (4,1)),
+        ('SPAN', (5,0), (5,1)),
+        ('SPAN', (6,0), (6,1)),
+        ('SPAN', (7,0), (7,1)),
+        ('SPAN', (8,0), (8,1))
+    ]))
     elements.append(htable)
 
     for op in operations:
-        row = [op['op'], Paragraph(op['description'], normal), op['interne'], op['tierce'],
-               Paragraph(op['document'], normal), Paragraph(op['criteria'][:150], normal),
-               op['signature'], op['record'], op['comment']]
-        rtable = Table([row], colWidths=[0.5*inch,1.5*inch,0.4*inch,0.4*inch,1.2*inch,1.4*inch,0.8*inch,0.8*inch])
-        rtable.setStyle(TableStyle([('FONTSIZE', (0,0), (-1,-1), 7), ('VALIGN', (0,0), (-1,-1), 'TOP'), ('GRID', (0,0), (-1,-1), 0.5, colors.black)]))
+        row = [
+            op['op'],
+            Paragraph(op['description'], normal),
+            op['interne'],
+            op['tierce'],
+            Paragraph(op['document'], normal),
+            Paragraph(op['criteria'][:150], normal),
+            op['signature'],
+            op['record'],
+            op['comment']
+        ]
+        rtable = Table([row], colWidths=[0.5*inch, 1.5*inch, 0.4*inch, 0.4*inch, 1.2*inch, 1.4*inch, 0.8*inch, 0.8*inch])
+        rtable.setStyle(TableStyle([
+            ('FONTSIZE', (0,0), (-1,-1), 7),
+            ('VALIGN', (0,0), (-1,-1), 'TOP'),
+            ('GRID', (0,0), (-1,-1), 0.5, colors.black)
+        ]))
         elements.append(rtable)
 
     yesno = [["", "", "", "", "", "", "", "Yes", "No"]]
-    ytable = Table(yesno, colWidths=[0.5*inch,1.5*inch,0.4*inch,0.4*inch,1.2*inch,1.4*inch,0.8*inch,0.8*inch])
-    ytable.setStyle(TableStyle([('FONTNAME', (0,0), (-1,-1), 'Helvetica-Bold'), ('ALIGN', (7,0), (8,0), 'CENTER'), ('GRID', (0,0), (-1,-1), 0.5, colors.black)]))
+    ytable = Table(yesno, colWidths=[0.5*inch, 1.5*inch, 0.4*inch, 0.4*inch, 1.2*inch, 1.4*inch, 0.8*inch, 0.8*inch])
+    ytable.setStyle(TableStyle([
+        ('FONTNAME', (0,0), (-1,-1), 'Helvetica-Bold'),
+        ('ALIGN', (7,0), (8,0), 'CENTER'),
+        ('GRID', (0,0), (-1,-1), 0.5, colors.black)
+    ]))
     elements.append(ytable)
-    elements.append(Spacer(1,0.2*inch))
+    elements.append(Spacer(1, 0.2*inch))
 
     sig = [["Rédigé par", "Approuvé par"]]
     sigtable = Table(sig, colWidths=[3*inch, 3*inch])
-    sigtable.setStyle(TableStyle([('ALIGN', (0,0), (-1,-1), 'CENTER'), ('FONTNAME', (0,0), (-1,-1), 'Helvetica-Bold'), ('GRID', (0,0), (-1,-1), 0.5, colors.black)]))
+    sigtable.setStyle(TableStyle([
+        ('ALIGN', (0,0), (-1,-1), 'CENTER'),
+        ('FONTNAME', (0,0), (-1,-1), 'Helvetica-Bold'),
+        ('GRID', (0,0), (-1,-1), 0.5, colors.black)
+    ]))
     elements.append(sigtable)
 
     doc.build(elements)
     return filename
-```
