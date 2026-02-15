@@ -1,7 +1,6 @@
-```txt
+txt
 streamlit
 pandas
 reportlab
 python-dateutil
 openpyxl
-```
