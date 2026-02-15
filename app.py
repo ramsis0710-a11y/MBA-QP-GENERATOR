@@ -1,4 +1,4 @@
-```python
+
 import streamlit as st
 import pandas as pd
 from datetime import datetime
@@ -56,4 +56,3 @@ if 'of_data' in locals():
         pdf = generate_qp_pdf(ops, of_data, qcp_ref, material)
         with open(pdf, "rb") as f:
             st.download_button("Télécharger PDF", f, file_name=f"QP_{of_data['wo_no']}.pdf")
-```
