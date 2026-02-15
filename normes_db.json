@@ -1,4 +1,4 @@
-```json
+json
 {
   "materials": [
     {
@@ -50,5 +50,3 @@
     "QHSE": "Souhir FRIKHA",
     "Management": "Chokri REKIK"
   }
-}
-```
