@@ -1,5 +1,4 @@
-txt
-streamlit
+ streamlit
 pandas
 reportlab
 python-dateutil
