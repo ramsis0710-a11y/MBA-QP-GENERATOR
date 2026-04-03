@@ -46,7 +46,7 @@ json
     "API 5CT": { "MPI": "ISO 13665", "UT": "ASTM E570" }
   },
   "signatures": {
-    "R&D": "Hassen CHAARI",
-    "QHSE": "Souhir FRIKHA",
-    "Management": "Chokri REKIK"
+    "R&D": "-----------------",
+    "QHSE": "-------------",
+    "Management": "-------------"
   }
