@@ -56,7 +56,7 @@ class QualityPlanGenerator:
             "op": "13", "description": "NDT", "interne": "", "tierce": "X",
             "document": "PR-13-PRO",
             "criteria": f"Per {', '.join(standards)} PSL{psl} : {ndt_text}",
-            "signature": "Gaith Elleuch", "record": "NDT Report", "comment": ""
+            "signature": "------", "record": "NDT Report", "comment": ""
         })
         # Final control
         mech = material['mechanical_properties']
@@ -65,7 +65,7 @@ class QualityPlanGenerator:
             "op": "17", "description": "Final control", "interne": "X", "tierce": "",
             "document": "FO-19-PRO",
             "criteria": mech_crit + ". Marquage complet.",
-            "signature": "Kais Hmidet, Ahmed Drira", "record": "FO-19-PRO", "comment": "Received/Finished"
+            "signature": "-----, ------", "record": "FO-19-PRO", "comment": "Received/Finished"
         })
         return ops, material
     
